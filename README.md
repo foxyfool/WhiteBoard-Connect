@@ -3,14 +3,23 @@
 Features:
 
 Whiteboard for drawing and sharing ideas
+
 Toolbar with Text, Shapes, Sticky Notes & Pencil
+
 Layering functionality
+
 Coloring system
+
 Undo & Redo functionality
+
 Keyboard shortcuts
+
 Real-time collaboration 
+
 Auth, organisations and invites 
+
 Favoriting functionality
+
 Next.js 14 framework
 
 
