@@ -16,19 +16,15 @@ const calculateFontSize = (width: number, height: number) => {
   const fontSizeBasedOnHeight = height * scaleFactor;
   const fontSizeBasedOnWidth = width * scaleFactor;
 
-  return Math.min(
-    fontSizeBasedOnHeight, 
-    fontSizeBasedOnWidth, 
-    maxFontSize
-  );
-}
+  return Math.min(fontSizeBasedOnHeight, fontSizeBasedOnWidth, maxFontSize);
+};
 
 interface TextProps {
   id: string;
   layer: TextLayer;
   onPointerDown: (e: React.PointerEvent, id: string) => void;
   selectionColor?: string;
-};
+}
 
 export const Text = ({
   layer,
@@ -38,10 +34,7 @@ export const Text = ({
 }: TextProps) => {
   const { x, y, width, height, fill, value } = layer;
 
-  const updateValue = useMutation((
-    { storage },
-    newValue: string,
-  ) => {
+  const updateValue = useMutation(({ storage }, newValue: string) => {
     const liveLayers = storage.get("layers");
 
     liveLayers.get(id)?.set("value", newValue);
@@ -52,6 +45,7 @@ export const Text = ({
   };
 
   return (
+    // svg renderer does support only foreignObject
     <foreignObject
       x={x}
       y={y}
@@ -59,7 +53,7 @@ export const Text = ({
       height={height}
       onPointerDown={(e) => onPointerDown(e, id)}
       style={{
-        outline: selectionColor ? `1px solid ${selectionColor}` : "none"
+        outline: selectionColor ? `1px solid ${selectionColor}` : "none",
       }}
     >
       <ContentEditable
